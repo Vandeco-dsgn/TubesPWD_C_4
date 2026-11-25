@@ -26,8 +26,8 @@ async function api(url, data) {
   let r, j;
   try { r = await fetch(url, o); j = await r.json(); }
   catch (e) { return { ok: false, error: 'Tidak bisa terhubung ke server. Pastikan Apache & MySQL XAMPP aktif dan halaman dibuka lewat http://localhost/.' }; }
-  if (r.status === 401) { location.href = 'login.html'; return never(); }
-  if (r.status === 403) { location.href = 'index.html'; return never(); }
+  if (r.status === 401) { location.href = 'login.xhtml'; return never(); }
+  if (r.status === 403) { location.href = 'index.xhtml'; return never(); }
   return j;
 }
 function renderNav(u, q) {
@@ -36,9 +36,9 @@ function renderNav(u, q) {
   if (u.role === 'staff') L.push(['tambah-buku', 'Tambah Buku']);
   $('#nav').innerHTML = `<div class="topbar">
     ${cur === 'index' ? `<form id="searchForm" class="search" action="#"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Cari judul, penulis, ISBN" value="${esc(q || '')}"/></form>` : '<div class="spacer"></div>'}
-    <nav>${L.map(([k, t]) => `<a href="${k}.html" class="${k === cur ? 'on' : ''}">${t}${k === 'keranjang' ? `<span class="badge" id="cartBadge" ${u.cart ? '' : 'hidden'}>${u.cart}</span>` : ''}</a>`).join('')}<a href="#" id="logout">Keluar</a></nav>
-    <a class="profile" href="pengaturan.html"><img class="avatar" src="${esc(u.pfp_url || AVATAR)}" alt="" onerror="this.onerror=null;this.src=AVATAR"/><span><b>${esc(u.username)}</b><small>${u.role === 'staff' ? 'Staff' : 'Member'}</small></span></a></div>`;
-  $('#logout').onclick = async e => { e.preventDefault(); await api('login.php?logout=1'); location.href = 'login.html'; };
+    <nav>${L.map(([k, t]) => `<a href="${k}.xhtml" class="${k === cur ? 'on' : ''}">${t}${k === 'keranjang' ? `<span class="badge" id="cartBadge" ${u.cart ? '' : 'hidden="hidden"'}>${u.cart}</span>` : ''}</a>`).join('')}<a href="#" id="logout">Keluar</a></nav>
+    <a class="profile" href="pengaturan.xhtml"><img class="avatar" src="${esc(u.pfp_url || AVATAR)}" alt="" onerror="this.onerror=null;this.src=AVATAR"/><span><b>${esc(u.username)}</b><small>${u.role === 'staff' ? 'Staff' : 'Member'}</small></span></a></div>`;
+  $('#logout').onclick = async e => { e.preventDefault(); await api('login.php?logout=1'); location.href = 'login.xhtml'; };
 }
 const setCart = n => { const b = $('#cartBadge'); if (b) { b.textContent = n; b.hidden = !n; } };
 const cover = (url, t) => `<div class="cover">${url ? `<img src="${esc(url)}" alt="${esc(t)}" loading="lazy" onerror="this.remove()"/>` : ''}<span>${esc((t || '?').charAt(0))}</span></div>`;
@@ -49,11 +49,11 @@ function bindEyes() {
 }
 async function initLogin() {
   bindEyes();
-  const s = await api('login.php'); if (s.user) { location.href = 'index.html'; return; }
+  const s = await api('login.php'); if (s.user) { location.href = 'index.xhtml'; return; }
   $('#loginForm').onsubmit = async e => {
     e.preventDefault();
     const r = await api('login.php', new FormData(e.target));
-    if (r.ok) location.href = 'index.html'; else { $('#msg').className = 'form-msg'; $('#msg').textContent = r.error; }
+    if (r.ok) location.href = 'index.xhtml'; else { $('#msg').className = 'form-msg'; $('#msg').textContent = r.error; }
   };
 }
 async function initPendaftaran() {
@@ -61,7 +61,7 @@ async function initPendaftaran() {
     e.preventDefault();
     const r = await api('pendaftaran.php', new FormData(e.target)), m = $('#msg');
     m.className = 'form-msg' + (r.ok ? ' good' : ''); m.textContent = r.ok ? r.message : r.error;
-    if (r.ok) setTimeout(() => location.href = 'login.html', 1200);
+    if (r.ok) setTimeout(() => location.href = 'login.xhtml', 1200);
   };
 }
 
@@ -123,7 +123,7 @@ async function initKeranjang() {
       <div class="grow" style="flex:1"><div class="a">${esc(i.penulis || '')}</div><div class="t">${esc(i.judul)}</div>
       ${+i.dipinjam ? '<div class="warn">Kamu masih meminjam buku ini.</div>' : i.tersedia < 1 ? '<div class="warn">Lisensi habis dipinjam orang lain.</div>' : ''}</div>
       <button type="button" class="icon-btn" data-del="${esc(i.isbn)}" aria-label="Hapus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></div>`).join('')
-      : '<div class="card empty">Keranjang masih kosong. <a href="index.html">Cari buku</a></div>';
+      : '<div class="card empty">Keranjang masih kosong. <a href="index.xhtml">Cari buku</a></div>';
     $$('.chk').forEach(c => c.onchange = sum); sum();
   };
   async function load() {
@@ -140,7 +140,7 @@ async function initKeranjang() {
     const isbn = $$('.chk:checked').map(c => c.value);
     $('#btnPinjam').disabled = true;
     const r = await api('keranjang.php', { action: 'pinjam', isbn, hari: $('#hari').value });
-    if (r.ok) { toast(r.message); setTimeout(() => location.href = 'riwayat.html', 1000); } else { toast(r.error, 1); load(); }
+    if (r.ok) { toast(r.message); setTimeout(() => location.href = 'riwayat.xhtml', 1000); } else { toast(r.error, 1); load(); }
   };
   load();
 }
@@ -160,7 +160,7 @@ async function initRiwayat() {
       return `<div class="tr row"><div class="bk"><div class="thumb">${cover(x.cover_url, x.judul)}</div><div><b>${esc(x.judul)}</b><small>${esc(x.penulis || '')}</small></div></div>
         <span>${fmtDate(x.tanggal_pinjam)}</span><span>${fmtDate(x.tanggal_jatuh_tempo)}</span>
         <span class="st st-${x.label}">${LBL[x.label]}${note ? `<small>${note}</small>` : ''}</span><span class="acts">${act}</span></div>`;
-    }).join('') : '<div class="card empty">Belum ada riwayat peminjaman. <a href="index.html">Cari buku</a></div>';
+    }).join('') : '<div class="card empty">Belum ada riwayat peminjaman. <a href="index.xhtml">Cari buku</a></div>';
   }
   $('#tabs').onclick = e => { const t = e.target.closest('.tab'); if (!t) return; $$('.tab').forEach(x => x.classList.toggle('active', x === t)); f = t.dataset.f; load(); };
   $('#rows').onclick = async e => {

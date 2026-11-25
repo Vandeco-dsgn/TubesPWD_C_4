@@ -6,7 +6,7 @@ $u = need_login(); $uid = (int)$u['id_user'];
 if (isset($_GET['baca'])) {
     $isbn = $_GET['baca'];
     $b = q('SELECT file_url FROM buku WHERE isbn=?', [$isbn])->fetch();
-    if (!$b || !has_active($uid, $isbn)) { header('Location: riwayat.html'); exit; }
+    if (!$b || !has_active($uid, $isbn)) { header('Location: riwayat.xhtml'); exit; }
     q('INSERT INTO progres(id_user, isbn) VALUES(?,?) ON DUPLICATE KEY UPDATE updated_at=NOW()', [$uid, $isbn]);
     header('Location: ' . $b['file_url']); exit;
 }
