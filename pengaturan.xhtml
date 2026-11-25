@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/chtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>E-Lib | Pengaturan</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="pengaturan">
+<header id="nav"></header>
+<main class="container">
+  <p class="crumb"><a href="index.xhtml">Beranda</a> <span>&#8250;</span> <span class="muted">Pengaturan</span></p>
+  <h1>Pengaturan</h1>
+  <p class="muted">Kelola informasi akun</p>
+  <section class="card pad">
+    <h3 class="card-title">Profil Saya</h3>
+    <div class="avatar-row">
+      <img id="avatar" class="avatar-lg" src="" alt="Foto profil" />
+      <div>
+        <input id="fileFoto" type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden="hidden" />
+        <button id="btnFoto" type="button" class="btn btn-sm">Ubah Foto</button>
+        <button id="btnHapus" type="button" class="btn btn-sm btn-danger" hidden="hidden">Hapus Foto</button>
+        <div class="url-row">
+          <input id="fotoUrl" type="url" placeholder="atau tempel URL gambar (https://...)" />
+          <button id="btnUrl" type="button" class="btn btn-sm">Pakai URL</button>
+        </div>
+      </div>
+    </div>
+    <form id="profileForm" novalidate="novalidate">
+      <div class="two">
+        <div><label for="username">Username</label><input id="username" name="username" type="text" required="required" /></div>
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required="required" /></div>
+      </div>
+      <label for="password">Password baru <span class="muted">(kosongkan jika tidak diganti)</span></label>
+      <input id="password" name="password" type="password" autocomplete="new-password" />
+      <div class="form-foot"><button type="submit" class="btn btn-primary">Simpan Perubahan</button></div>
+    </form>
+  </section>
+</main>
+<script src="js/app.js"></script>
+</body>
+</html>
