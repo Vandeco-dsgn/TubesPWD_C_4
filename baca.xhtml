@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>E-Lib | Baca</title>
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/reader.css" />
+</head>
+<body data-page="baca" class="reader-body">
+<header class="rd-bar">
+  <a class="btn btn-sm" href="riwayat.xhtml">&#8249; Kembali</a>
+  <div class="rd-title" id="rdTitle">Memuat…</div>
+  <div class="rd-ctrl" id="rdCtrl" hidden="hidden">
+    <button type="button" class="btn btn-sm" id="btnPrev" aria-label="Halaman sebelumnya">&#8249;</button>
+    <span id="pgBox"><input id="pgIn" type="number" min="1" value="1" aria-label="Nomor halaman" /> / <span id="pgTot">1</span></span>
+    <span id="pctBox" hidden="hidden"><b id="pctTxt">0%</b></span>
+    <button type="button" class="btn btn-sm" id="btnNext" aria-label="Halaman berikutnya">&#8250;</button>
+    <button type="button" class="btn btn-sm" id="btnZoomOut" aria-label="Perkecil">&#8722;</button>
+    <button type="button" class="btn btn-sm" id="btnZoomIn" aria-label="Perbesar">+</button>
+  </div>
+</header>
+<div class="rd-progress" title="Progres membaca"><i id="rdFill"></i></div>
+<main class="rd-stage" id="stage">
+  <p class="rd-msg" id="rdMsg">Memuat buku…</p>
+  <canvas id="pdfCanvas" hidden="hidden"></canvas>
+  <div id="epub" hidden="hidden"></div>
+</main>
+<script src="js/common/helpers.js"></script>
+<script src="js/common/api.js"></script>
+<script src="js/pages/baca.js"></script>
+</body>
+</html>

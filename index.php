@@ -15,15 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $c[] = $isbn; $_SESSION['cart'] = $c;
         ok(['message' => 'Ditambahkan ke keranjang.']);
     }
-    if ($a === 'progres') {
-        $b = q('SELECT halaman FROM buku WHERE isbn=?', [$isbn])->fetch();
-        if (!$b || !has_active($uid, $isbn)) fail('Buku ini tidak sedang kamu pinjam.');
-        $h = (int)($_POST['halaman'] ?? -1);
-        if ($h < 0 || $h > (int)$b['halaman']) fail('Halaman harus antara 0 dan ' . $b['halaman'] . '.');
-        q('INSERT INTO progres(id_user, isbn, halaman_terakhir) VALUES(?,?,?)
-           ON DUPLICATE KEY UPDATE halaman_terakhir=VALUES(halaman_terakhir), updated_at=NOW()', [$uid, $isbn, $h]);
-        ok(['message' => 'Progres membaca disimpan.']);
-    }
     fail('Aksi tidak dikenal.');
 }
 

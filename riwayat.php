@@ -2,14 +2,8 @@
 require 'config.php';
 $u = need_login(); $uid = (int)$u['id_user'];
 
-// Buka file buku (hanya jika sedang dipinjam), catat progres, lalu arahkan ke file
-if (isset($_GET['baca'])) {
-    $isbn = $_GET['baca'];
-    $b = q('SELECT file_url FROM buku WHERE isbn=?', [$isbn])->fetch();
-    if (!$b || !has_active($uid, $isbn)) { header('Location: riwayat.xhtml'); exit; }
-    q('INSERT INTO progres(id_user, isbn) VALUES(?,?) ON DUPLICATE KEY UPDATE updated_at=NOW()', [$uid, $isbn]);
-    header('Location: ' . $b['file_url']); exit;
-}
+// Link lama ?baca=ISBN diarahkan ke pembaca di situs (file asli tidak pernah dibuka langsung)
+if (isset($_GET['baca'])) { header('Location: baca.xhtml?isbn=' . rawurlencode($_GET['baca'])); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (($_POST['action'] ?? '') === 'kembali') {

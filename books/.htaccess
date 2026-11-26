@@ -1,0 +1,9 @@
+# File buku TIDAK boleh diakses langsung lewat URL.
+# Satu-satunya jalan adalah file.php (cek login + peminjaman aktif).
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>
