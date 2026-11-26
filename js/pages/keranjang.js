@@ -20,7 +20,7 @@ async function initKeranjang() {
   };
   async function load() {
     const r = await api('keranjang.php'); renderNav(r.user); items = r.items; setCart(items.length);
-    $('#hari').innerHTML = Array.from({ length: r.max_hari }, (_, k) => r.max_hari - k).map(n => `<option value="${n}">${n} hari</option>`).join('');
+    $('#hari').innerHTML = Array.from({ length: r.max_hari }, (_, k) => k + 1).map(n => `<option value="${n}">${n} hari</option>`).join('');
     draw();
   }
   $('#chkAll').onchange = e => { $$('.chk:not(:disabled)').forEach(c => c.checked = e.target.checked); sum(); };
