@@ -4,7 +4,7 @@ session_start();
 date_default_timezone_set('Asia/Jakarta');
 
 const DB_HOST = 'localhost';
-const DB_NAME = 'e-library';   // nama database tempat e-lib.sql di-import
+const DB_NAME = 'library';   // nama database tempat e-lib.sql di-import
 const DB_USER = 'root';
 const DB_PASS = '';        // default XAMPP: kosong
 const MAX_HARI  = 14;      // batas maksimal lama peminjaman (hari)
