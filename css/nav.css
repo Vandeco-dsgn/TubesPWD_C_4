@@ -10,8 +10,10 @@
 .avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;background:#dbe7fb}
 .crumb{margin:30px 0 20px;font-size:13px}.crumb span{margin:0 4px}
 @media(max-width:820px){
-  .topbar{flex-wrap:wrap;gap:14px;padding:16px 20px}
-  .search{max-width:none;order:3;flex-basis:100%}
-  .topbar nav{margin-left:0}
-  .profile{margin-left:auto}
+  .topbar{flex-wrap:wrap;gap:12px;padding:14px 16px}
+  .profile{order:1;margin-left:0;margin-right:auto}
+  .search{order:2;max-width:none;flex-basis:100%}
+  .topbar nav{order:3;flex-basis:100%;margin-left:0;gap:16px;overflow-x:auto;white-space:nowrap;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .topbar nav::-webkit-scrollbar{display:none}
+  .crumb{margin:18px 0 14px}
 }
