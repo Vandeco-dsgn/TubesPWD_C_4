@@ -21,6 +21,11 @@
   font-size: 13px;
 }
 
+#btnHapusSel:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .item {
   display: flex;
   align-items: center;
