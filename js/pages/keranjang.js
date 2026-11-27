@@ -1,6 +1,13 @@
 'use strict';
 /* Keranjang (keranjang.xhtml) */
 async function initKeranjang() {
+  const lblAll = $('label[for="chkAll"]');
+  if (lblAll) {
+    const st = getComputedStyle(lblAll);
+    $('#btnHapusSel').style.fontSize = st.fontSize;
+    $('#btnHapusSel').style.fontWeight = st.fontWeight;
+  }
+
   let items = [];
   const usable = i => !+i.dipinjam && i.tersedia > 0;
   const sum = () => {
