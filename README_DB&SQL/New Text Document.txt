@@ -1,0 +1,10 @@
+Demo Website ini bergantung pada 
+database MySQL
+
+1.buat database Bernama library pada phpmyadmin
+
+2.import sql file yang berada pada folder ini kedalam database tersebut
+
+3.pastikan directory file-file xhtml dan php, folder js,css,books,images,serta readme_db&sql adalah "xamp\htdocs\e-lib\namaFolderAtauNamaFile"
+
+4.access website melalui localhost/e-lib/login.xhtml

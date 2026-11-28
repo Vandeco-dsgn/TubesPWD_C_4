@@ -1,45 +1,38 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>E-Lib | Keranjang</title>
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/components.css" />
-<link rel="stylesheet" href="css/nav.css" />
-<link rel="stylesheet" href="css/cart.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/components.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/nav.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/cart.css?v=20261128c" />
 </head>
-<body data-page="keranjang">
-<header id="nav"></header>
-<main class="container">
+<body id="page-keranjang">
+<div id="nav"></div>
+<div class="container">
   <p class="crumb"><a href="index.xhtml">Beranda</a> <span>&#8250;</span> <span class="muted">Keranjang</span></p>
   <h1>Keranjang</h1>
   <div class="layout">
-    <section>
-      <div class="card pick-all" style="display:flex; align-items:center; gap:10px;">
-      <input id="chkAll" type="checkbox" />
-      <label for="chkAll">Pilih Semua</label>
-      <button id="btnHapusSel" type="button" disabled="disabled"
-        style="margin-left:auto; background:none; border:none; padding:0; font:inherit; font-weight:600; color:#dc2626; cursor:pointer;">
-        Hapus Semua
-      </button>
-</div>
+    <div>
+      <div class="card pick-all"><input id="chkAll" type="checkbox" /> <label for="chkAll">Pilih Semua</label></div>
       <div id="items"></div>
-    </section>
-    <aside class="card summary">
+    </div>
+    <div class="card summary">
       <h3>Ringkasan Keranjang</h3>
-      <div class="sum-row"><b>Judul</b><ul id="sumList"></ul></div>
+      <div class="sum-row"><b>Judul</b><ul id="sumList"><li class="muted">-</li></ul></div>
       <hr />
       <div class="sum-row"><b>Total Buku</b><span id="total">0</span></div>
       <label for="hari" class="small">Lama pinjam (maks. 14 hari)</label>
-      <select id="hari"></select>
+      <select id="hari"><option value="14">14 hari</option></select>
       <button id="btnPinjam" type="button" class="btn btn-primary btn-block" disabled="disabled">Pinjam</button>
-    </aside>
+    </div>
   </div>
-</main>
-<script src="js/common/helpers.js"></script>
-<script src="js/common/api.js"></script>
-<script src="js/common/ui.js"></script>
-<script src="js/pages/keranjang.js"></script>
+</div>
+<script type="text/javascript" src="js/common/helpers.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/api.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/ui.js?v=20261128c"></script>
+<script type="text/javascript" src="js/pages/keranjang.js?v=20261128c"></script>
 </body>
 </html>

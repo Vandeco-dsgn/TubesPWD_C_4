@@ -5,9 +5,7 @@ $cart = $_SESSION['cart'] ?? [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $a = $_POST['action'] ?? '';
-    $raw = $_POST['isbn'] ?? [];
-    if (is_string($raw)) $raw = explode(',', $raw);
-    $sel = array_values(array_unique(array_filter((array)$raw, 'strlen')));
+    $sel = array_values(array_unique(array_filter((array)($_POST['isbn'] ?? []), 'strlen')));
     if ($a === 'hapus') {
         $_SESSION['cart'] = array_values(array_diff($cart, $sel));
         ok(['message' => 'Buku dihapus dari keranjang.']);

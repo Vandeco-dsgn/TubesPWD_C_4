@@ -1,46 +1,48 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>E-Lib | Tambah Buku</title>
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/components.css" />
-<link rel="stylesheet" href="css/nav.css" />
-<link rel="stylesheet" href="css/forms.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/components.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/nav.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/forms.css?v=20261128c" />
 </head>
-<body data-page="tambah-buku">
-<header id="nav"></header>
-<main class="container">
+<body id="page-tambah-buku">
+<div id="nav"></div>
+<div class="container">
   <p class="crumb"><a href="index.xhtml">Beranda</a> <span>&#8250;</span> <span class="muted">Tambah Buku</span></p>
   <h1>Tambah Buku</h1>
   <p class="muted">Khusus staff. Lisensi menentukan berapa orang yang bisa meminjam buku ini pada waktu yang sama.</p>
-  <section class="card pad">
-    <form id="bookForm" novalidate="novalidate">
-      <div class="two">
-        <div><label for="isbn">ISBN</label><input id="isbn" name="isbn" type="text" maxlength="17" required="required" /></div>
-        <div><label for="judul">Judul</label><input id="judul" name="judul" type="text" maxlength="255" required="required" /></div>
-        <div><label for="penulis">Penulis <span class="muted">(pisahkan dengan koma)</span></label><input id="penulis" name="penulis" type="text" required="required" /></div>
-        <div><label for="penerbit">Penerbit</label><input id="penerbit" name="penerbit" type="text" maxlength="255" required="required" /></div>
-        <div><label for="kategori">Kategori <span class="muted">(pisahkan dengan koma)</span></label><input id="kategori" name="kategori" type="text" /></div>
-        <div><label for="edisi">Edisi <span class="muted">(opsional)</span></label><input id="edisi" name="edisi" type="number" min="1" /></div>
-        <div><label for="halaman">Jumlah halaman</label><input id="halaman" name="halaman" type="number" min="1" required="required" /></div>
-        <div><label for="license">Lisensi (peminjam bersamaan)</label><input id="license" name="license" type="number" min="1" value="1" required="required" /></div>
-        <div><label for="format">Format file</label>
-          <select id="format" name="format"><option value="pdf">PDF</option><option value="epub">EPUB</option></select></div>
-        <div></div>
-        <div><label for="cover">Sampul (unggah gambar)</label><input id="cover" name="cover" type="file" accept="image/*" /></div>
-        <div><label for="cover_url">atau URL sampul</label><input id="cover_url" name="cover_url" type="text" maxlength="255" placeholder="https://..." /></div>
-        <div><label for="file">File buku (PDF/EPUB)</label><input id="file" name="file" type="file" accept=".pdf,.epub" /></div>
-        <div><label for="file_url">atau URL file buku</label><input id="file_url" name="file_url" type="text" maxlength="255" placeholder="https://..." /></div>
+  <div class="card pad">
+    <form id="bookForm" action="tambah-buku.php" method="post" enctype="multipart/form-data">
+      <div>
+        <div class="two">
+          <div><label for="isbn">ISBN</label><input id="isbn" name="isbn" type="text" maxlength="17" title="9786020000000" /></div>
+          <div><label for="judul">Judul</label><input id="judul" name="judul" type="text" maxlength="255" /></div>
+          <div><label for="penulis">Penulis <span class="muted">(pisahkan dengan koma)</span></label><input id="penulis" name="penulis" type="text" /></div>
+          <div><label for="penerbit">Penerbit</label><input id="penerbit" name="penerbit" type="text" maxlength="255" /></div>
+          <div><label for="kategori">Kategori <span class="muted">(pisahkan dengan koma)</span></label><input id="kategori" name="kategori" type="text" /></div>
+          <div><label for="edisi">Edisi <span class="muted">(opsional)</span></label><input id="edisi" name="edisi" type="text" class="t-number" /></div>
+          <div><label for="halaman">Jumlah halaman</label><input id="halaman" name="halaman" type="text" class="t-number" /></div>
+          <div><label for="license">Lisensi (peminjam bersamaan)</label><input id="license" name="license" type="text" class="t-number" value="3" /></div>
+          <div><label for="format">Format file</label>
+            <select id="format" name="format"><option value="pdf">PDF</option><option value="epub">EPUB</option></select></div>
+          <div></div>
+          <div><label for="cover">Sampul (unggah gambar)</label><input id="cover" name="cover" type="file" accept="image/*" /></div>
+          <div><label for="cover_url">atau URL sampul</label><input id="cover_url" name="cover_url" type="text" maxlength="255" title="https://..." /></div>
+          <div><label for="file">File buku (PDF/EPUB)</label><input id="file" name="file" type="file" accept=".pdf,.epub" /></div>
+          <div><label for="file_url">atau URL file buku</label><input id="file_url" name="file_url" type="text" maxlength="255" title="https://..." /></div>
+        </div>
+        <div class="form-foot"><button type="submit" class="btn btn-primary">Simpan Buku</button></div>
       </div>
-      <div class="form-foot"><button type="submit" class="btn btn-primary">Simpan Buku</button></div>
     </form>
-  </section>
-</main>
-<script src="js/common/helpers.js"></script>
-<script src="js/common/api.js"></script>
-<script src="js/common/ui.js"></script>
-<script src="js/pages/tambah-buku.js"></script>
+  </div>
+</div>
+<script type="text/javascript" src="js/common/helpers.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/api.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/ui.js?v=20261128c"></script>
+<script type="text/javascript" src="js/pages/tambah-buku.js?v=20261128c"></script>
 </body>
 </html>

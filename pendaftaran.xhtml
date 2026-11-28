@@ -1,39 +1,41 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>E-Lib | Daftar</title>
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/components.css" />
-<link rel="stylesheet" href="css/auth.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/components.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/auth.css?v=20261128c" />
 </head>
-<body class="auth-bg" data-page="pendaftaran">
-<main class="auth-card">
-  <section class="auth-side">
+<body class="auth-bg" id="page-pendaftaran">
+<div class="auth-card">
+  <div class="auth-side">
     <h2 class="serif">Selamat Datang Kembali!</h2>
     <p>Sudah punya akun? Masuk dan lanjutkan buku yang sedang Anda baca.</p>
     <a class="btn btn-outline-light" href="login.xhtml">MASUK</a>
-  </section>
-  <section class="auth-form">
+  </div>
+  <div class="auth-form">
     <h1 class="serif">Buat Akun</h1>
     <p class="muted small">Daftar gratis dan mulai meminjam e-book.</p>
-    <form id="regForm" novalidate="novalidate">
-      <label for="username">Username</label>
-      <div class="input-wrap"><input id="username" name="username" type="text" placeholder="Pilih username" autocomplete="username" required="required" /></div>
-      <label for="email">Email</label>
-      <div class="input-wrap"><input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="email" required="required" /></div>
-      <label for="password">Password</label>
-      <div class="input-wrap"><input id="password" name="password" type="password" placeholder="Minimal 6 karakter" autocomplete="new-password" required="required" /></div>
-      <label for="konfirmasi">Konfirmasi Password</label>
-      <div class="input-wrap"><input id="konfirmasi" name="konfirmasi" type="password" placeholder="Ulangi password" autocomplete="new-password" required="required" /></div>
-      <p id="msg" class="form-msg" role="alert"></p>
-      <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+    <form id="regForm" action="pendaftaran.php" method="post">
+      <div>
+        <label for="username">Username</label>
+        <div class="input-wrap"><input id="username" name="username" type="text" title="Pilih username" /></div>
+        <label for="email">Email</label>
+        <div class="input-wrap"><input id="email" name="email" type="text" class="t-email" title="nama@email.com" /></div>
+        <label for="password">Password</label>
+        <div class="input-wrap"><input id="password" name="password" type="password" title="Minimal 6 karakter" /></div>
+        <label for="konfirmasi">Konfirmasi Password</label>
+        <div class="input-wrap"><input id="konfirmasi" name="konfirmasi" type="password" title="Ulangi password" /></div>
+        <p id="msg" class="form-msg"></p>
+        <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+      </div>
     </form>
-  </section>
-</main>
-<script src="js/common/helpers.js"></script>
-<script src="js/common/api.js"></script>
-<script src="js/pages/auth.js"></script>
+  </div>
+</div>
+<script type="text/javascript" src="js/common/helpers.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/api.js?v=20261128c"></script>
+<script type="text/javascript" src="js/pages/auth.js?v=20261128c"></script>
 </body>
 </html>

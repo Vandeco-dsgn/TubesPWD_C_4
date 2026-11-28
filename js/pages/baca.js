@@ -5,7 +5,7 @@ const loadScript = src => new Promise((ok, no) => {
   const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('Gagal memuat ' + src));
   document.head.appendChild(s);
 });
-const stageMsg = (t, err) => { const m = $('#rdMsg'); m.hidden = false; m.className = 'rd-msg' + (err ? ' err' : ''); m.textContent = t; };
+const stageMsg = (t, err) => { const m = $('#rdMsg'); m.className = 'rd-msg' + (err ? ' err' : ''); m.textContent = t; };
 
 /* Penyimpan progres: menunda 0,7 dtk setelah halaman berhenti berganti, dan menyimpan sisa saat tab ditutup/disembunyikan */
 function makeTracker(isbn, total) {
@@ -40,17 +40,17 @@ function lockDown() {
 }
 
 async function readPdf(buf, b, track) {
-  await loadScript('js/vendor/pdfjs/pdf.min.js');
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/vendor/pdfjs/pdf.worker.min.js';
+  await loadScript('js/vendor/pdfjs/pdf.min.js?v=2.12.313');
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/vendor/pdfjs/pdf.worker.min.js?v=2.12.313';
   const pdf = await pdfjsLib.getDocument({ data: buf, isEvalSupported: false }).promise;
   const n = pdf.numPages, total = b.halaman || n;
   /* Jumlah halaman di database bisa beda dari PDF asli, jadi disimpan sebagai skala: halaman/n × total */
   const toStored = p => Math.round(p / n * total);
   const toPage = s => Math.min(n, Math.max(1, Math.round(s / total * n)));
   let page = b.halaman_terakhir > 0 ? toPage(b.halaman_terakhir) : 1, zoom = 1, busy = false, again = false;
-  const canvas = $('#pdfCanvas'), stage = $('#stage');
-  $('#pgTot').textContent = n; $('#pgIn').max = n; $('#rdCtrl').hidden = false;
-  $('#rdMsg').hidden = true; canvas.hidden = false;
+  const stage = $('#stage'), canvas = document.createElement('canvas');
+  canvas.id = 'pdfCanvas'; stage.appendChild(canvas); /* dibuat lewat JS: <canvas> tidak ada di XHTML 1.0 */
+  $('#pgTot').textContent = n; show($('#rdCtrl'), true); show($('#rdMsg'), false);
 
   async function draw() {
     if (busy) { again = true; return; }
@@ -78,7 +78,7 @@ async function readPdf(buf, b, track) {
   $('#btnZoomIn').onclick = () => { zoom = Math.min(3, zoom * 1.2); draw(); };
   $('#btnZoomOut').onclick = () => { zoom = Math.max(0.5, zoom / 1.2); draw(); };
   document.addEventListener('keydown', e => {
-    if (e.target.tagName === 'INPUT') return;
+    if (e.target.localName === 'input') return;
     if (['ArrowRight', 'PageDown'].includes(e.key)) go(page + 1);
     if (['ArrowLeft', 'PageUp'].includes(e.key)) go(page - 1);
   });
@@ -89,9 +89,9 @@ async function readPdf(buf, b, track) {
 }
 
 async function readEpub(buf, b, track) {
-  await loadScript('js/vendor/jszip.min.js'); await loadScript('js/vendor/epub.min.js');
+  await loadScript('js/vendor/jszip.min.js?v=3.10.1'); await loadScript('js/vendor/epub.min.js?v=0.3.93');
   const total = b.halaman || 100, box = $('#epub');
-  box.hidden = false; $('#rdCtrl').hidden = false; $('#pgBox').hidden = true; $('#pctBox').hidden = false;
+  show(box, true); show($('#rdCtrl'), true); show($('#pgBox'), false); show($('#pctBox'), true);
   const book = ePub(buf);
   const rend = book.renderTo('epub', { width: '100%', height: '100%', flow: 'paginated', spread: 'none' });
   rend.hooks.content.register(c => {
@@ -100,7 +100,7 @@ async function readEpub(buf, b, track) {
     c.document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && ['s', 'p'].includes(e.key.toLowerCase())) e.preventDefault(); });
   });
   await book.ready; await book.locations.generate(1024);
-  $('#rdMsg').hidden = true;
+  show($('#rdMsg'), false);
   track.sync(b.halaman_terakhir); track.set(b.halaman_terakhir);
   $('#pctTxt').textContent = Math.round((b.halaman_terakhir / total) * 100) + '%';
   let settle = Infinity; // selama membuka posisi tersimpan, perpindahan otomatis tidak ikut disimpan (hindari pergeseran progres)
@@ -124,6 +124,8 @@ async function readEpub(buf, b, track) {
 
 async function initBaca() {
   lockDown();
+  /* Tombol Kembali: kembali ke halaman asal (Beranda/Riwayat) bila ada, jika tidak ke Riwayat */
+  $('#btnBack').onclick = e => { if (history.length > 1 && document.referrer.startsWith(location.origin)) { e.preventDefault(); history.back(); } };
   const isbn = new URLSearchParams(location.search).get('isbn') || '';
   const info = await api('baca.php?isbn=' + encodeURIComponent(isbn));
   if (!info.ok) { $('#rdTitle').textContent = 'Tidak bisa dibuka'; stageMsg(info.error, 1); return; }

@@ -1,48 +1,50 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id">
 <head>
-<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>E-Lib | Pengaturan</title>
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/components.css" />
-<link rel="stylesheet" href="css/nav.css" />
-<link rel="stylesheet" href="css/forms.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/components.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/nav.css?v=20261128c" />
+<link rel="stylesheet" type="text/css" href="css/forms.css?v=20261128c" />
 </head>
-<body data-page="pengaturan">
-<header id="nav"></header>
-<main class="container">
+<body id="page-pengaturan">
+<div id="nav"></div>
+<div class="container">
   <p class="crumb"><a href="index.xhtml">Beranda</a> <span>&#8250;</span> <span class="muted">Pengaturan</span></p>
   <h1>Pengaturan</h1>
   <p class="muted">Kelola informasi akun</p>
-  <section class="card pad">
+  <div class="card pad">
     <h3 class="card-title">Profil Saya</h3>
     <div class="avatar-row">
-      <img id="avatar" class="avatar-lg" src="" alt="Foto profil" />
+      <img id="avatar" class="avatar-lg" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="Foto profil" />
       <div>
-        <input id="fileFoto" type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden="hidden" />
+        <input id="fileFoto" type="file" accept="image/png,image/jpeg,image/gif,image/webp" class="hide" />
         <button id="btnFoto" type="button" class="btn btn-sm">Ubah Foto</button>
-        <button id="btnHapus" type="button" class="btn btn-sm btn-danger" hidden="hidden">Hapus Foto</button>
+        <button id="btnHapus" type="button" class="btn btn-sm btn-danger hide">Hapus Foto</button>
         <div class="url-row">
-          <input id="fotoUrl" type="url" placeholder="atau tempel URL gambar (https://...)" />
+          <input id="fotoUrl" type="text" class="t-url" title="atau tempel URL gambar (https://...)" />
           <button id="btnUrl" type="button" class="btn btn-sm">Pakai URL</button>
         </div>
       </div>
     </div>
-    <form id="profileForm" novalidate="novalidate">
-      <div class="two">
-        <div><label for="username">Username</label><input id="username" name="username" type="text" required="required" /></div>
-        <div><label for="email">Email</label><input id="email" name="email" type="email" required="required" /></div>
+    <form id="profileForm" action="pengaturan.php" method="post">
+      <div>
+        <div class="two">
+          <div><label for="username">Username</label><input id="username" name="username" type="text" /></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="text" class="t-email" /></div>
+        </div>
+        <label for="password">Password baru <span class="muted">(kosongkan jika tidak diganti)</span></label>
+        <input id="password" name="password" type="password" />
+        <div class="form-foot"><button type="submit" class="btn btn-primary">Simpan Perubahan</button></div>
       </div>
-      <label for="password">Password baru <span class="muted">(kosongkan jika tidak diganti)</span></label>
-      <input id="password" name="password" type="password" autocomplete="new-password" />
-      <div class="form-foot"><button type="submit" class="btn btn-primary">Simpan Perubahan</button></div>
     </form>
-  </section>
-</main>
-<script src="js/common/helpers.js"></script>
-<script src="js/common/api.js"></script>
-<script src="js/common/ui.js"></script>
-<script src="js/pages/pengaturan.js"></script>
+  </div>
+</div>
+<script type="text/javascript" src="js/common/helpers.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/api.js?v=20261128c"></script>
+<script type="text/javascript" src="js/common/ui.js?v=20261128c"></script>
+<script type="text/javascript" src="js/pages/pengaturan.js?v=20261128c"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@
 /* Penyaji file buku. Tidak ada URL file asli yang pernah dikirim ke browser.
    Syarat: login, buku sedang dipinjam, dan permintaan datang dari pembaca situs (header X-Reader).
    Dengan begitu file tidak bisa dibuka/diunduh lewat tab baru atau "Save link as". */
-   
 require 'config.php';
 $u = need_login(); $uid = (int)$u['id_user'];
 if (($_SERVER['HTTP_X_READER'] ?? '') !== '1') fail('File hanya bisa dibuka lewat pembaca di situs ini.', 403);
