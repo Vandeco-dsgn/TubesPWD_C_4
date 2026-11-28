@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2026 at 06:47 AM
+-- Generation Time: Nov 28, 2026 at 10:04 AM
 -- Server version: 10.11.16-MariaDB
 -- PHP Version: 8.5.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `e-library`
+-- Database: `library`
 --
 
 -- --------------------------------------------------------
@@ -44,12 +44,12 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`isbn`, `judul`, `edisi`, `id_penerbit`, `halaman`, `cover_url`, `file_url`, `format`, `license`) VALUES
-('9786020531328', 'Seporsi Mie Ayam Sebelum Mati', 0, 3, 217, 'images/covers/9786020531328_2c3a001f.jpg', 'books/9786020531328_d03424e1.pdf', 'pdf', 5),
-('9786020644158', 'Sukses Memimpin', 0, 1, 214, 'images/covers/9786020644158_db962484.jpg', 'books/9786020644158_de0e532b.pdf', 'pdf', 5),
-('9786020653853', 'Breath: Cara Bernapas dengan Benar', 0, 1, 322, 'images/covers/9786020653853_829795d8.jpg', 'books/9786020653853_1349a63e.pdf', 'pdf', 5),
-('9786026320094', 'Hipnosis Go: Untuk Hidup Lebih Baik', 0, 4, 222, 'images/covers/9786026320094_cd38a177.jpg', 'books/9786026320094_bcc2e4da.pdf', 'pdf', 5),
-('9786230417863', 'Logika Asa', 0, 2, 356, 'images/covers/9786230417863_47e632cc.jpg', 'books/9786230417863_9c05008b.pdf', 'pdf', 5),
-('9789797945275', 'Merayakan Kehilangan', 1, 5, 226, 'images/covers/9789797945275_ea0d79c3.jpg', 'books/9789797945275_712ac70f.pdf', 'pdf', 5);
+('9786020531328', 'Seporsi Mie Ayam Sebelum Mati', NULL, 1, 217, 'images/covers/9786020531328_4acdb942.jpg', 'books/9786020531328_e1dbb438.pdf', 'pdf', 5),
+('9786020644158', 'Sukses Memimpin', NULL, 8, 214, 'images/covers/9786020644158_556a9481.jpg', 'books/9786020644158_7f33891d.pdf', 'pdf', 5),
+('9786020653853', 'Breath: Cara Bernapas dengan Benar', NULL, 8, 332, 'images/covers/9786020653853_ac699703.jpg', 'books/9786020653853_62560ebb.pdf', 'pdf', 5),
+('9786026320094', 'Hipnosis Go: Untuk Hidup Lebih Baik', NULL, 7, 220, 'images/covers/9786026320094_d8ad1b83.jpg', 'books/9786026320094_d949fc0a.pdf', 'pdf', 5),
+('9786230417863', 'Logika Asa', NULL, 6, 356, 'images/covers/9786230417863_9cd69f0f.jpg', 'books/9786230417863_c1c15417.pdf', 'pdf', 5),
+('9789797945275', 'Merayakan Kehilangan', NULL, 3, 226, 'images/covers/9789797945275_4324c745.jpg', 'books/9789797945275_302a1995.pdf', 'pdf', 5);
 
 -- --------------------------------------------------------
 
@@ -61,6 +61,17 @@ CREATE TABLE `detail_pinjam` (
   `id_pinjam` int(11) NOT NULL,
   `isbn` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_pinjam`
+--
+
+INSERT INTO `detail_pinjam` (`id_pinjam`, `isbn`) VALUES
+(1, '9786020531328'),
+(2, '9786020644158'),
+(3, '9786020531328'),
+(4, '9786020644158'),
+(5, '9786020531328');
 
 -- --------------------------------------------------------
 
@@ -78,13 +89,9 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
-(9, 'Bisnis & Pengembangan Diri'),
-(4, 'Fiksi'),
-(3, 'Fiksi / Novel'),
-(2, 'Kesehatan'),
-(1, 'Nonfiksi'),
-(6, 'Psikologi & Pengembangan Diri'),
-(7, 'Romance');
+(1, 'Fiksi'),
+(7, 'Non Fiksi'),
+(3, 'Romance');
 
 -- --------------------------------------------------------
 
@@ -102,15 +109,11 @@ CREATE TABLE `kategori_buku` (
 --
 
 INSERT INTO `kategori_buku` (`id_kategori`, `isbn`) VALUES
-(1, '9786020644158'),
-(1, '9786020653853'),
-(1, '9786026320094'),
-(2, '9786020653853'),
-(3, '9786230417863'),
-(4, '9786020531328'),
-(6, '9786026320094'),
-(7, '9789797945275'),
-(9, '9786020644158');
+(1, '9786020531328'),
+(1, '9786230417863'),
+(3, '9789797945275'),
+(7, '9786020644158'),
+(7, '9786020653853');
 
 -- --------------------------------------------------------
 
@@ -128,11 +131,12 @@ CREATE TABLE `penerbit` (
 --
 
 INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`) VALUES
-(2, 'Bhuana Ilmu Populer'),
-(4, 'BintangWahyu'),
-(1, 'Gramedia Pustaka Utama'),
-(3, 'Gramedia Widiasarana Indonesia (Grasindo)'),
-(5, 'mediakita');
+(6, 'Bhuana Ilmu Populer'),
+(7, 'BintangWahyu'),
+(8, 'Gramedia Pustaka Utama'),
+(1, 'Gramedia Widiasarana Indonesia (Grasindo)'),
+(2, 'Gramedia Widiasarana Indonesia (Grasindo) 2'),
+(3, 'mediakita');
 
 -- --------------------------------------------------------
 
@@ -150,11 +154,13 @@ CREATE TABLE `penulis` (
 --
 
 INSERT INTO `penulis` (`id_penulis`, `nama_penulis`) VALUES
-(1, 'James Nestor'),
-(2, 'Valerie Patkar'),
+(1, 'Brian Krisna'),
+(2, 'Brian Krisna 2'),
 (3, 'Brian Khrisna'),
-(4, 'Nurul Fajriyah & Machrubiansyah'),
-(5, 'Dale Carnegie');
+(4, 'Valerie Patkar'),
+(5, 'Nurul Fajriyah & Machrubiansyah'),
+(6, 'James Nestor'),
+(7, 'Dale Carnegie');
 
 -- --------------------------------------------------------
 
@@ -172,6 +178,17 @@ CREATE TABLE `pinjam` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pinjam`
+--
+
+INSERT INTO `pinjam` (`id_pinjam`, `id_user`, `tanggal_pinjam`, `tanggal_jatuh_tempo`, `tanggal_kembali`, `status`, `created_at`) VALUES
+(1, 1, '2026-11-28', '2026-11-29', '2026-11-28', 'dikembalikan', '2026-11-28 05:04:00'),
+(2, 1, '2026-11-28', '2026-12-12', '2026-11-28', 'dikembalikan', '2026-11-28 08:21:42'),
+(3, 2, '2026-11-28', '2026-12-12', '2026-11-28', 'dikembalikan', '2026-11-28 08:46:13'),
+(4, 1, '2026-11-28', '2026-12-01', '2026-11-28', 'dikembalikan', '2026-11-28 08:49:49'),
+(5, 1, '2026-11-28', '2026-12-04', '2026-11-28', 'dikembalikan', '2026-11-28 08:56:02');
+
 -- --------------------------------------------------------
 
 --
@@ -184,6 +201,13 @@ CREATE TABLE `progres` (
   `halaman_terakhir` int(11) NOT NULL DEFAULT 0,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `progres`
+--
+
+INSERT INTO `progres` (`id_user`, `isbn`, `halaman_terakhir`, `updated_at`) VALUES
+(1, '9786020644158', 1, '2026-11-28 08:21:53');
 
 -- --------------------------------------------------------
 
@@ -201,12 +225,12 @@ CREATE TABLE `tulis_buku` (
 --
 
 INSERT INTO `tulis_buku` (`id_penulis`, `isbn`) VALUES
-(1, '9786020653853'),
-(2, '9786230417863'),
 (3, '9786020531328'),
 (3, '9789797945275'),
-(4, '9786026320094'),
-(5, '9786020644158');
+(4, '9786230417863'),
+(5, '9786026320094'),
+(6, '9786020653853'),
+(7, '9786020644158');
 
 -- --------------------------------------------------------
 
@@ -229,8 +253,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `username`, `password_hash`, `role`, `pfp_url`, `created_at`) VALUES
-(1, 'admin@gmail.com', 'admin', '$2y$12$wN/ks8dS27JBcCT9zcIPUeLxiQXevb2h3OTY7xjWMeyDIfJMP373e', 'staff', NULL, '2026-11-28 05:26:04'),
-(2, 'xxx@gmail.com', 'xxx', '$2y$12$m8clzxzNiKNwRp.FAAIHYedmU0tykbdZC0dZFjZWQw/A./a1g2abO', 'member', NULL, '2026-11-28 05:43:45');
+(1, 'admin@gmail.com', 'admin', '$2y$12$SRWZqnSVGe2vwFc5QE.UsOq2OEPXxWyXRkSHLatUCxnGnJ5G5GOqW', 'staff', NULL, '2026-11-26 06:36:19'),
+(2, 'testing@gmail.com', 'testing', '$2y$12$kIWKdxLyoIdqkCwszeU6oeg9b93qXeygO9HpS5Lx96CnAes8xjaU6', 'member', NULL, '2026-11-26 06:38:09'),
+(3, 'user@gmail.com', 'user', '$2y$12$EruCUeQQQzpUbHD/daZtWuHT8Mx26fMejxlumqqjrLYj1Vcsw0GKO', 'member', NULL, '2026-11-28 08:56:34');
 
 --
 -- Indexes for dumped tables
@@ -315,31 +340,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `penerbit`
 --
 ALTER TABLE `penerbit`
-  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `penulis`
 --
 ALTER TABLE `penulis`
-  MODIFY `id_penulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_penulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id_pinjam` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
