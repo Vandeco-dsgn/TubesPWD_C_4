@@ -1,6 +1,7 @@
 /* Keranjang & ringkasan */
 .layout{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;margin-top:18px}
-.pick-all{display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:14px}.pick-all label{margin:0;font-weight:500;font-size:13px}
+.pick-all{display:flex;align-items:center;gap:12px;padding:10px 16px;margin-bottom:14px}.pick-all label{margin:0;font-weight:500;font-size:13px}
+.pick-all .del-all{margin-left:auto}
 .item{display:flex;align-items:center;gap:16px;padding:14px 16px;margin-bottom:12px}
 .item .t{font-size:14px;margin-top:2px}.item .a{font-size:12px;color:var(--muted)}
 .warn{font-size:11px;color:var(--red);margin-top:4px}

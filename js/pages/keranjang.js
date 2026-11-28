@@ -6,7 +6,9 @@ async function initKeranjang() {
   const sum = () => {
     const sel = $$('.chk:checked').map(c => items.find(i => i.isbn === c.value));
     $('#sumList').innerHTML = sel.length ? sel.map(i => `<li>${esc(i.judul)}</li>`).join('') : '<li class="muted">-</li>';
-    $('#total').textContent = sel.length; $('#btnPinjam').disabled = !sel.length;
+    $('#total').textContent = sel.length;
+    $('#btnPinjam').disabled = !sel.length;
+    $('#btnDelAll').disabled = !sel.length;
     const n = $$('.chk:not(:disabled)').length; $('#chkAll').checked = n > 0 && sel.length === n;
   };
   const draw = () => {
@@ -24,6 +26,13 @@ async function initKeranjang() {
     draw();
   }
   $('#chkAll').onchange = e => { $$('.chk:not(:disabled)').forEach(c => c.checked = e.target.checked); sum(); };
+  $('#btnDelAll').onclick = async () => {
+    const isbn = $$('.chk:checked').map(c => c.value);
+    if (!isbn.length) return;
+    $('#btnDelAll').disabled = true;
+    const r = await api('keranjang.php', { action: 'hapus', isbn });
+    r.ok ? load() : (toast(r.error, 1), sum());
+  };
   $('#items').onclick = async e => {
     const b = e.target.closest('.del-item'); if (!b) return;
     const r = await api('keranjang.php', { action: 'hapus', isbn: [b.value] }); r.ok ? load() : toast(r.error, 1);

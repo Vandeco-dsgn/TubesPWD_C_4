@@ -16,7 +16,11 @@
   <h1>Keranjang</h1>
   <div class="layout">
     <div>
-      <div class="card pick-all"><input id="chkAll" type="checkbox" /> <label for="chkAll">Pilih Semua</label></div>
+      <div class="card pick-all">
+        <input id="chkAll" type="checkbox" />
+        <label for="chkAll">Pilih Semua</label>
+        <button id="btnDelAll" type="button" class="btn btn-sm btn-danger del-all" disabled="disabled">Hapus Semua</button>
+      </div>
       <div id="items"></div>
     </div>
     <div class="card summary">

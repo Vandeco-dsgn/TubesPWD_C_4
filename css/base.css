@@ -3,6 +3,7 @@
 :root{--blue:#2358e0;--blue-d:#3a63ad;--navy:#16233b;--muted:#6b7a90;--line:#e5e9f0;--soft:#f6f8fc;
   --green:#1f9d55;--orange:#e8912d;--red:#d64545;--serif:'Lora',Georgia,'Times New Roman',serif}
 *{box-sizing:border-box}
+html{overflow-y:scroll}
 .hide{display:none!important}
 body{margin:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--navy);background:#fff;font-size:14px}
 a{color:inherit;text-decoration:none}

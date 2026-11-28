@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($a === 'pinjam') {
         if (!$sel) fail('Pilih minimal satu buku.');
-        $hari = (int)($_POST['hari'] ?? MAX_HARI);
+        $hari = (int)($_POST['hari'] ?? 1);
         if ($hari < 1 || $hari > MAX_HARI) fail('Lama peminjaman maksimal ' . MAX_HARI . ' hari.');
         $pdo->beginTransaction();
         try {

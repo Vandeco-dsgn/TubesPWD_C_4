@@ -6,6 +6,11 @@
                   => Kristoforus Glenn Diego Tristan - 250713426
                   => Angelina Stella Sulistyaningrum - 250713281
                   => Briggitha Jovinca Hervian Go - 250713275
+
+
+//ADMIN//
+Username        : admin
+Password        : 111111
                   
 
 
